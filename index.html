@@ -20,7 +20,7 @@
             --font-main: 'Inter', sans-serif;
             --font-heading: 'Montserrat', sans-serif;
             --radius-soft: 8px;
-            --radius-card: 14px;
+            --radius-card: 12px;
             --shadow-main: 0px 4px 14px rgba(12, 35, 64, 0.05);
             --shadow-hover: 0px 6px 18px rgba(12, 35, 64, 0.08);
         }
@@ -38,10 +38,7 @@
             width: 100%;
             height: auto;
             overflow: hidden;
-            -ms-overflow-style: none;
-            scrollbar-width: none;
         }
-        body::-webkit-scrollbar { display: none; }
 
         h1, h2, h3, h4, .font-heading {
             font-family: var(--font-heading);
@@ -106,9 +103,8 @@
         }
 
         .card-thumbnail {
-            width: 100%;
-            max-width: 140px;
-            height: 95px;
+            width: 140px;
+            height: 90px;
             object-fit: cover;
             border-radius: 8px;
             border: 1px solid #DBE2E9;
@@ -145,9 +141,9 @@
         }
     </style>
 </head>
-<body class="p-1 sm:p-2 flex items-start justify-center w-full box-border">
+<body class="p-0.5 sm:p-1 flex items-start justify-center w-full box-border">
 
-    <div class="main-container p-3 sm:p-5">
+    <div id="rootContainer" class="main-container p-3 sm:p-4 md:p-5">
         
         <div class="flex items-center justify-between mb-3 w-full relative z-20">
             <span class="inline-flex items-center space-x-1.5 text-xs font-bold text-[#005EB8] bg-[#DBE2E9] px-3 py-1.5 rounded-[4px] font-heading uppercase tracking-wider">
@@ -162,9 +158,9 @@
             </button>
         </div>
 
-        <div class="flex flex-col space-y-2.5 relative z-20">
+        <div class="flex flex-col space-y-2 relative z-20">
             
-            <div class="clean-card p-3.5 sm:p-4" onclick="toggleCard(this)">
+            <div class="clean-card p-3 sm:p-3.5" onclick="toggleCard(this)">
                 <div class="flex items-center justify-between">
                     <div class="flex items-center space-x-3">
                         <span class="w-6 h-6 rounded-full bg-[#DBE2E9] text-[#005EB8] font-heading font-bold text-xs flex items-center justify-center shrink-0">01</span>
@@ -174,18 +170,18 @@
                 </div>
                 <div class="details-wrapper">
                     <div class="details-content">
-                        <div class="pt-3 mt-2 border-t border-slate-100 flex flex-col sm:flex-row gap-3 items-start">
+                        <div class="pt-2.5 mt-2 border-t border-slate-100 flex flex-col sm:flex-row gap-3 items-start">
                             <img src="home_visit_planning.jpeg" alt="Home Visit Planning" class="card-thumbnail">
-                            <div class="text-xs sm:text-sm text-[#333F48] leading-relaxed space-y-1.5 flex-1">
-                                <p><strong>Advance Coordination:</strong> If an intimate examination is anticipated prior to a home visit, arrange for a second trained staff member or community nurse to attend.</p>
-                                <p><strong>Universal Rule:</strong> The standard applies everywhere—chaperoning obligations are identical in clinic rooms and private homes.</p>
+                            <div class="text-xs sm:text-sm text-[#333F48] leading-relaxed space-y-1 flex-1">
+                                <p><strong>Advance Coordination:</strong> If an intimate examination is anticipated before attending a patient's home, arrange for a second trained staff member or community nurse to accompany the clinician.</p>
+                                <p><strong>Universal Duty:</strong> The standard applies everywhere—chaperone obligations are identical in clinic rooms and private residences.</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="clean-card p-3.5 sm:p-4 !border-l-[#FE5000]" onclick="toggleCard(this)">
+            <div class="clean-card p-3 sm:p-3.5 !border-l-[#FE5000]" onclick="toggleCard(this)">
                 <div class="flex items-center justify-between">
                     <div class="flex items-center space-x-3">
                         <span class="w-6 h-6 rounded-full bg-[#FFE5D9] text-[#FE5000] font-heading font-bold text-xs flex items-center justify-center shrink-0">02</span>
@@ -195,18 +191,18 @@
                 </div>
                 <div class="details-wrapper">
                     <div class="details-content">
-                        <div class="pt-3 mt-2 border-t border-slate-100 flex flex-col sm:flex-row gap-3 items-start">
+                        <div class="pt-2.5 mt-2 border-t border-slate-100 flex flex-col sm:flex-row gap-3 items-start">
                             <img src="unanticipated_exam.jpeg" alt="Unanticipated Examination Protocol" class="card-thumbnail">
-                            <div class="text-xs sm:text-sm text-[#333F48] leading-relaxed space-y-1.5 flex-1">
-                                <p><strong>Urgency Assessment:</strong> If an intimate examination becomes unexpectedly necessary on-site while alone, evaluate clinical urgency.</p>
-                                <p><strong>Safe Rescheduling:</strong> Unless critical, offer to arrange the examination at the practice surgery or book a coordinated follow-up visit.</p>
+                            <div class="text-xs sm:text-sm text-[#333F48] leading-relaxed space-y-1 flex-1">
+                                [cite_start]<p><strong>Urgency Assessment:</strong> If an intimate examination becomes necessary on-site while alone, evaluate clinical urgency[cite: 187].</p>
+                                [cite_start]<p><strong>Safe Rescheduling:</strong> Unless critical, offer to arrange the examination at the practice surgery or coordinate a joint follow-up visit[cite: 187].</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="clean-card p-3.5 sm:p-4" onclick="toggleCard(this)">
+            <div class="clean-card p-3 sm:p-3.5" onclick="toggleCard(this)">
                 <div class="flex items-center justify-between">
                     <div class="flex items-center space-x-3">
                         <span class="w-6 h-6 rounded-full bg-[#DBE2E9] text-[#005EB8] font-heading font-bold text-xs flex items-center justify-center shrink-0">03</span>
@@ -216,11 +212,11 @@
                 </div>
                 <div class="details-wrapper">
                     <div class="details-content">
-                        <div class="pt-3 mt-2 border-t border-slate-100 flex flex-col sm:flex-row gap-3 items-start">
+                        <div class="pt-2.5 mt-2 border-t border-slate-100 flex flex-col sm:flex-row gap-3 items-start">
                             <img src="lone_working_record.jpeg" alt="EHR Lone Working Documentation" class="card-thumbnail">
-                            <div class="text-xs sm:text-sm text-[#333F48] leading-relaxed space-y-1.5 flex-1">
-                                <p><strong>Emergency Exception:</strong> In life-threatening emergencies where delay causes acute patient harm, proceed unaccompanied.</p>
-                                <p><strong>Contemporaneous Entry:</strong> Document immediately in the clinical record why a chaperone could not be present and the clinical rationale for proceeding.</p>
+                            <div class="text-xs sm:text-sm text-[#333F48] leading-relaxed space-y-1 flex-1">
+                                [cite_start]<p><strong>Emergency Exception:</strong> In life-threatening emergencies where delay causes acute patient harm, proceed unaccompanied[cite: 187].</p>
+                                [cite_start]<p><strong>Contemporaneous Entry:</strong> Document immediately in the clinical record why a chaperone was unavailable and the clinical rationale for proceeding [cite: 187, 193-197].</p>
                             </div>
                         </div>
                     </div>
@@ -235,11 +231,20 @@
     <audio id="audioPart2" src="L3_Sec3_LoneWork_Part2.wav" preload="auto"></audio>
 
     <script>
+        function updateParentHeight() {
+            const height = document.getElementById('rootContainer').offsetHeight + 16;
+            window.parent.postMessage({ frameHeight: height }, '*');
+        }
+
         function toggleCard(element) {
             const isOpen = element.classList.contains('open');
             document.querySelectorAll('.clean-card').forEach(card => card.classList.remove('open'));
             if (!isOpen) element.classList.add('open');
+            setTimeout(updateParentHeight, 220);
         }
+
+        window.addEventListener('load', updateParentHeight);
+        window.addEventListener('resize', updateParentHeight);
 
         const audioToggleBtn = document.getElementById('audioToggleBtn');
         const audioSwitch = document.getElementById('audioSwitch');
