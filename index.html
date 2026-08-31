@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Section 1.3: Lone Working and Home Visits</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700;800&display=swap');
+
+        :root {
+            --ttn-navy: #0C2340;
+            --ttn-trust-blue: #005EB8;
+            --ttn-sky-cyan: #59CBE8;
+            --ttn-action-orange: #FE5000;
+            --ttn-slate: #333F48;
+            --ttn-ice-blue: #DBE2E9;
+            --ttn-success: #00BF6F;
+            --ttn-error: #D5281B;
+            --font-main: 'Inter', sans-serif;
+            --font-heading: 'Montserrat', sans-serif;
+            --radius-soft: 8px;
+            --radius-card: 14px;
+            --shadow-main: 0px 4px 14px rgba(12, 35, 64, 0.05);
+            --shadow-hover: 0px 6px 18px rgba(12, 35, 64, 0.08);
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        body, html {
+            font-family: var(--font-main);
+            color: var(--ttn-slate);
+            background-color: transparent;
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: auto;
+            overflow: hidden;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        body::-webkit-scrollbar { display: none; }
+
+        h1, h2, h3, h4, .font-heading {
+            font-family: var(--font-heading);
+        }
+
+        .main-container {
+            width: 100%;
+            background-color: #FFFFFFEE;
+            border-radius: 1rem;
+            border: 1px solid #DBE2E9;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
+            position: relative;
+            background-image: url('Watermark_Background.jpeg');
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        .clean-card {
+            background-color: #FFFFFF;
+            border: 1.5px solid var(--ttn-ice-blue);
+            border-left: 4.5px solid var(--ttn-trust-blue);
+            border-radius: var(--radius-card);
+            box-shadow: var(--shadow-main);
+            transition: all 180ms ease-in-out;
+            cursor: pointer;
+        }
+
+        .clean-card:hover {
+            box-shadow: var(--shadow-hover);
+            transform: translateY(-1px);
+        }
+
+        .clean-card.open {
+            border-left-color: var(--ttn-action-orange);
+            border-color: #bfdbfe;
+        }
+
+        .chevron-icon {
+            color: var(--ttn-trust-blue);
+            transform: rotate(0deg); 
+            transition: transform 180ms ease, color 180ms ease;
+        }
+
+        .clean-card.open .chevron-icon {
+            transform: rotate(180deg);
+            color: var(--ttn-action-orange);
+        }
+
+        .details-wrapper {
+            display: grid;
+            grid-template-rows: 0fr;
+            transition: grid-template-rows 200ms ease-in-out;
+        }
+        
+        .clean-card.open .details-wrapper {
+            grid-template-rows: 1fr;
+        }
+        
+        .details-content {
+            overflow: hidden;
+        }
+
+        .card-thumbnail {
+            width: 100%;
+            max-width: 140px;
+            height: 95px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 1px solid #DBE2E9;
+            background-color: #F1F5F9;
+            flex-shrink: 0;
+        }
+
+        .toggle-switch {
+            width: 34px;
+            height: 18px;
+            background-color: var(--ttn-ice-blue);
+            border-radius: 9999px;
+            position: relative;
+            cursor: pointer;
+            transition: background-color 180ms ease-in-out;
+        }
+        .toggle-switch.active {
+            background-color: var(--ttn-success);
+        }
+        .toggle-switch::after {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 14px;
+            height: 14px;
+            background-color: #FFFFFF;
+            border-radius: 50%;
+            transition: transform 180ms ease-in-out;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+        }
+        .toggle-switch.active::after {
+            transform: translateX(16px);
+        }
+    </style>
+</head>
+<body class="p-1 sm:p-2 flex items-start justify-center w-full box-border">
+
+    <div class="main-container p-3 sm:p-5">
+        
+        <div class="flex items-center justify-between mb-3 w-full relative z-20">
+            <span class="inline-flex items-center space-x-1.5 text-xs font-bold text-[#005EB8] bg-[#DBE2E9] px-3 py-1.5 rounded-[4px] font-heading uppercase tracking-wider">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+                <span>Off-Site Safety &bull; Home Visits &amp; Lone Working</span>
+            </span>
+
+            <button id="audioToggleBtn" type="button" class="flex items-center space-x-2 cursor-pointer bg-white px-3 py-1.5 rounded-full border border-[#DBE2E9] shadow-sm hover:border-slate-300 transition-all focus:outline-none">
+                <svg id="speakerIcon" class="w-3.5 h-3.5 text-[#005EB8]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"></path></svg>
+                <span class="text-xs font-semibold text-[#0C2340] font-heading">Dr. Lindsay Guidance</span>
+                <div id="audioSwitch" class="toggle-switch"></div>
+            </button>
+        </div>
+
+        <div class="flex flex-col space-y-2.5 relative z-20">
+            
+            <div class="clean-card p-3.5 sm:p-4" onclick="toggleCard(this)">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center space-x-3">
+                        <span class="w-6 h-6 rounded-full bg-[#DBE2E9] text-[#005EB8] font-heading font-bold text-xs flex items-center justify-center shrink-0">01</span>
+                        <h3 class="font-bold text-[#0C2340] text-sm font-heading leading-tight">Pre-Planned Home Visit Chaperoning</h3>
+                    </div>
+                    <svg class="chevron-icon w-3.5 h-3.5 shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </div>
+                <div class="details-wrapper">
+                    <div class="details-content">
+                        <div class="pt-3 mt-2 border-t border-slate-100 flex flex-col sm:flex-row gap-3 items-start">
+                            <img src="home_visit_planning.jpeg" alt="Home Visit Planning" class="card-thumbnail">
+                            <div class="text-xs sm:text-sm text-[#333F48] leading-relaxed space-y-1.5 flex-1">
+                                <p><strong>Advance Coordination:</strong> If an intimate examination is anticipated prior to a home visit, arrange for a second trained staff member or community nurse to attend.</p>
+                                <p><strong>Universal Rule:</strong> The standard applies everywhere—chaperoning obligations are identical in clinic rooms and private homes.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="clean-card p-3.5 sm:p-4 !border-l-[#FE5000]" onclick="toggleCard(this)">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center space-x-3">
+                        <span class="w-6 h-6 rounded-full bg-[#FFE5D9] text-[#FE5000] font-heading font-bold text-xs flex items-center justify-center shrink-0">02</span>
+                        <h3 class="font-bold text-[#0C2340] text-sm font-heading leading-tight">Unanticipated Intimate Needs</h3>
+                    </div>
+                    <svg class="chevron-icon w-3.5 h-3.5 shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </div>
+                <div class="details-wrapper">
+                    <div class="details-content">
+                        <div class="pt-3 mt-2 border-t border-slate-100 flex flex-col sm:flex-row gap-3 items-start">
+                            <img src="unanticipated_exam.jpeg" alt="Unanticipated Examination Protocol" class="card-thumbnail">
+                            <div class="text-xs sm:text-sm text-[#333F48] leading-relaxed space-y-1.5 flex-1">
+                                <p><strong>Urgency Assessment:</strong> If an intimate examination becomes unexpectedly necessary on-site while alone, evaluate clinical urgency.</p>
+                                <p><strong>Safe Rescheduling:</strong> Unless critical, offer to arrange the examination at the practice surgery or book a coordinated follow-up visit.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="clean-card p-3.5 sm:p-4" onclick="toggleCard(this)">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center space-x-3">
+                        <span class="w-6 h-6 rounded-full bg-[#DBE2E9] text-[#005EB8] font-heading font-bold text-xs flex items-center justify-center shrink-0">03</span>
+                        <h3 class="font-bold text-[#0C2340] text-sm font-heading leading-tight">Emergency Exceptions &amp; Documentation</h3>
+                    </div>
+                    <svg class="chevron-icon w-3.5 h-3.5 shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </div>
+                <div class="details-wrapper">
+                    <div class="details-content">
+                        <div class="pt-3 mt-2 border-t border-slate-100 flex flex-col sm:flex-row gap-3 items-start">
+                            <img src="lone_working_record.jpeg" alt="EHR Lone Working Documentation" class="card-thumbnail">
+                            <div class="text-xs sm:text-sm text-[#333F48] leading-relaxed space-y-1.5 flex-1">
+                                <p><strong>Emergency Exception:</strong> In life-threatening emergencies where delay causes acute patient harm, proceed unaccompanied.</p>
+                                <p><strong>Contemporaneous Entry:</strong> Document immediately in the clinical record why a chaperone could not be present and the clinical rationale for proceeding.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <audio id="audioPart1" src="L3_Sec3_LoneWork_Part1.wav" preload="auto"></audio>
+    <audio id="audioPart2" src="L3_Sec3_LoneWork_Part2.wav" preload="auto"></audio>
+
+    <script>
+        function toggleCard(element) {
+            const isOpen = element.classList.contains('open');
+            document.querySelectorAll('.clean-card').forEach(card => card.classList.remove('open'));
+            if (!isOpen) element.classList.add('open');
+        }
+
+        const audioToggleBtn = document.getElementById('audioToggleBtn');
+        const audioSwitch = document.getElementById('audioSwitch');
+        const speakerIcon = document.getElementById('speakerIcon');
+
+        const tracks = [
+            document.getElementById('audioPart1'),
+            document.getElementById('audioPart2')
+        ];
+
+        let currentTrackIdx = 0;
+        let isAudioPlaying = false;
+
+        function playTrack(idx) {
+            if (idx >= tracks.length) {
+                stopAllAudio();
+                return;
+            }
+            currentTrackIdx = idx;
+            const currentAudio = tracks[currentTrackIdx];
+            currentAudio.currentTime = 0;
+            currentAudio.play().then(() => {
+                isAudioPlaying = true;
+                audioSwitch.classList.add('active');
+                speakerIcon.classList.add('text-[#00BF6F]');
+                speakerIcon.classList.remove('text-[#005EB8]');
+            }).catch(err => {
+                stopAllAudio();
+            });
+        }
+
+        tracks.forEach((track, idx) => {
+            track.addEventListener('ended', () => playTrack(idx + 1));
+        });
+
+        function stopAllAudio() {
+            tracks.forEach(track => {
+                track.pause();
+                track.currentTime = 0;
+            });
+            currentTrackIdx = 0;
+            isAudioPlaying = false;
+            audioSwitch.classList.remove('active');
+            speakerIcon.classList.remove('text-[#00BF6F]');
+            speakerIcon.classList.add('text-[#005EB8]');
+        }
+
+        audioToggleBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            isAudioPlaying ? stopAllAudio() : playTrack(0);
+        });
+    </script>
+</body>
+</html>
